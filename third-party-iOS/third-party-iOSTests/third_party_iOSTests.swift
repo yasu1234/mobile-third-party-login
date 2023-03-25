@@ -1,10 +1,3 @@
-//
-//  third_party_iOSTests.swift
-//  third-party-iOSTests
-//
-//  Created by 神代泰宏 on 2023/03/25.
-//
-
 import XCTest
 @testable import third_party_iOS
 

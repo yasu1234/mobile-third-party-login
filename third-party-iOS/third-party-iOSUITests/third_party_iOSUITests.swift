@@ -1,10 +1,3 @@
-//
-//  third_party_iOSUITests.swift
-//  third-party-iOSUITests
-//
-//  Created by 神代泰宏 on 2023/03/25.
-//
-
 import XCTest
 
 class third_party_iOSUITests: XCTestCase {

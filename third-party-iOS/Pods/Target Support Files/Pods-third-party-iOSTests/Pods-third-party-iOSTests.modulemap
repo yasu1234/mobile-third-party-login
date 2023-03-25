@@ -1,0 +1,6 @@
+framework module Pods_third_party_iOSTests {
+  umbrella header "Pods-third-party-iOSTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

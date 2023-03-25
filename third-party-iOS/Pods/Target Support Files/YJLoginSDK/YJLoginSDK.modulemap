@@ -1,0 +1,6 @@
+framework module YJLoginSDK {
+  umbrella header "YJLoginSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}
