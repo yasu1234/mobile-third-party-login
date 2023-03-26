@@ -1,9 +1,8 @@
 import AuthenticationServices
+import TwitterKit
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet private weak var appleLoginButton: UIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -13,6 +12,10 @@ class ViewController: UIViewController {
 extension ViewController {
     @IBAction func appleLoginButtonPushed(_ sender: Any) {
         loginApple()
+    }
+    
+    @IBAction func twitterLoginButtonPushed(_ sender: Any) {
+        loginTwitter()
     }
 }
 
@@ -26,6 +29,17 @@ extension ViewController {
         controller.presentationContextProvider = self
         
         controller.performRequests()
+    }
+    
+    private func loginTwitter() {
+        TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in
+            if let session = session {
+                // use session authToken to login
+                print(session.authToken)
+            } else {
+                print("Error")
+            }
+        })
     }
 }
 

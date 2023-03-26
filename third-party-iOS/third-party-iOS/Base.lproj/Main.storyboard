@@ -28,18 +28,29 @@
                                     <action selector="appleLoginButtonPushed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NH4-3T-fcy"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVl-fo-6fX">
+                                <rect key="frame" x="20" y="95" width="374" height="31"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Twitter">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="twitterLoginButtonPushed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bEq-WP-oJz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="fVl-fo-6fX" firstAttribute="top" secondItem="XjU-Wx-1EY" secondAttribute="bottom" constant="10" id="Aej-g6-bMb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fVl-fo-6fX" secondAttribute="trailing" constant="20" id="bNq-mj-KAO"/>
                             <constraint firstItem="XjU-Wx-1EY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="dtf-OT-8XZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XjU-Wx-1EY" secondAttribute="trailing" constant="20" id="ehp-bk-yZ5"/>
+                            <constraint firstItem="fVl-fo-6fX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="iy1-B1-XdJ"/>
                             <constraint firstItem="XjU-Wx-1EY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="mBJ-cC-CHD"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="appleLoginButton" destination="XjU-Wx-1EY" id="mxv-H9-UcM"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
