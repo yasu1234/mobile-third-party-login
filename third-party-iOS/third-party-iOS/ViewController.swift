@@ -1,4 +1,5 @@
 import AuthenticationServices
+import GoogleSignIn
 import TwitterKit
 import UIKit
 
@@ -16,6 +17,10 @@ extension ViewController {
     
     @IBAction func twitterLoginButtonPushed(_ sender: Any) {
         loginTwitter()
+    }
+    
+    @IBAction func googleLoginButtonPushed(_ sender: Any) {
+        loginGoogle()
     }
 }
 
@@ -40,6 +45,17 @@ extension ViewController {
                 print("Error")
             }
         })
+    }
+    
+    private func loginGoogle() {
+        // set GIDClientID in info.plist
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) {
+            [weak self] signInResult, error in
+            if error == nil, let token = signInResult?.user.idToken?.tokenString {
+                // use token to login
+                print(token)
+            }
+        }
     }
 }
 

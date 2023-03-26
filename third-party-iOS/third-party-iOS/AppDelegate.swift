@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     private func initTwitter() {
-        // set  ConsumeKey and Secret
+        // set ConsumeKey and Secret
         TWTRTwitter.sharedInstance().start(withConsumerKey: "", consumerSecret: "")
     }
 }
