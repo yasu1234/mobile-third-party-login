@@ -1,11 +1,13 @@
 import TwitterKit
 import UIKit
+import YJLoginSDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         initTwitter()
+        initYahoo()
         return true
     }
 
@@ -24,5 +26,9 @@ extension AppDelegate {
         // set ConsumeKey and Secret
         TWTRTwitter.sharedInstance().start(withConsumerKey: "", consumerSecret: "")
     }
+    
+    private func initYahoo() {
+        // set Clientid and RedirectUrl
+        LoginManager.shared.setup(clientId: "", redirectUri: URL(string: "")!)
+    }
 }
-

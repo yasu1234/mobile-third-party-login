@@ -50,6 +50,17 @@
                                     <action selector="googleLoginButtonPushed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dY7-lB-gfY"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dq5-A4-6CV">
+                                <rect key="frame" x="20" y="177" width="374" height="31"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Yahoo">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="yahooLoginButtonPushed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aMx-0v-j6u"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -63,6 +74,9 @@
                             <constraint firstItem="fVl-fo-6fX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="iy1-B1-XdJ"/>
                             <constraint firstItem="XjU-Wx-1EY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="mBJ-cC-CHD"/>
                             <constraint firstItem="V5x-Jm-RFf" firstAttribute="top" secondItem="fVl-fo-6fX" secondAttribute="bottom" constant="10" id="nEo-CJ-cko"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Dq5-A4-6CV" secondAttribute="trailing" constant="20" id="oFu-50-TXo"/>
+                            <constraint firstItem="Dq5-A4-6CV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="w1k-E1-Pzr"/>
+                            <constraint firstItem="Dq5-A4-6CV" firstAttribute="top" secondItem="V5x-Jm-RFf" secondAttribute="bottom" constant="10" id="w2A-cc-ppe"/>
                         </constraints>
                     </view>
                 </viewController>
