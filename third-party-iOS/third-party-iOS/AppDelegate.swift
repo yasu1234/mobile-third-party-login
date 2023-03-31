@@ -1,4 +1,5 @@
 import TwitterKit
+import LineSDK
 import UIKit
 import YJLoginSDK
 
@@ -8,6 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         initTwitter()
         initYahoo()
+        initLine()
         return true
     }
 
@@ -30,5 +32,10 @@ extension AppDelegate {
     private func initYahoo() {
         // set Clientid and RedirectUrl
         LoginManager.shared.setup(clientId: "", redirectUri: URL(string: "")!)
+    }
+    
+    private func initLine() {
+        // set ChannelId and universalLinkURL(optional)
+        LoginManager.shared.setup(channelID: "", universalLinkURL: nil)
     }
 }

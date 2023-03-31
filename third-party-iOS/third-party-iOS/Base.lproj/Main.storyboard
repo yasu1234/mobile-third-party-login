@@ -61,13 +61,27 @@
                                     <action selector="yahooLoginButtonPushed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aMx-0v-j6u"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2C-Sg-4Xa">
+                                <rect key="frame" x="20" y="218" width="374" height="31"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Line">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="lineLoginButtonPushed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WVW-DO-WtG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="d2C-Sg-4Xa" firstAttribute="top" secondItem="Dq5-A4-6CV" secondAttribute="bottom" constant="10" id="7BI-5Y-fl9"/>
                             <constraint firstItem="fVl-fo-6fX" firstAttribute="top" secondItem="XjU-Wx-1EY" secondAttribute="bottom" constant="10" id="Aej-g6-bMb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="d2C-Sg-4Xa" secondAttribute="trailing" constant="20" id="BiM-bP-fm2"/>
                             <constraint firstItem="V5x-Jm-RFf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Bti-hp-OXV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="V5x-Jm-RFf" secondAttribute="trailing" constant="20" id="C6U-Gg-FyA"/>
+                            <constraint firstItem="d2C-Sg-4Xa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="GXQ-oA-lB4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fVl-fo-6fX" secondAttribute="trailing" constant="20" id="bNq-mj-KAO"/>
                             <constraint firstItem="XjU-Wx-1EY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="dtf-OT-8XZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XjU-Wx-1EY" secondAttribute="trailing" constant="20" id="ehp-bk-yZ5"/>

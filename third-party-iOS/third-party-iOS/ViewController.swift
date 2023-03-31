@@ -1,5 +1,6 @@
 import AuthenticationServices
 import GoogleSignIn
+import LineSDK
 import TwitterKit
 import UIKit
 import YJLoginSDK
@@ -25,6 +26,10 @@ extension ViewController {
     
     @IBAction func yahooLoginButtonPushed(_ sender: Any) {
         loginYahoo()
+    }
+    
+    @IBAction func lineLoginButtonPushed(_ sender: Any) {
+        loginLine()
     }
 }
 
@@ -52,6 +57,9 @@ extension ViewController {
     }
     
     private func loginGoogle() {
+        // to set signOut(), make you to login status reset if already logined
+        GIDSignIn.sharedInstance.signOut()
+        
         // set GIDClientID in info.plist
         GIDSignIn.sharedInstance.signIn(withPresenting: self) {
             [weak self] signInResult, error in
@@ -120,6 +128,19 @@ extension ViewController {
             }
         }
         return result
+    }
+    
+    private func loginLine() {
+        LoginManager.shared.login(permissions: [.profile, .openID], in: self) {
+            result in
+            switch result {
+            case .success(let loginResult):
+                // use accessToken to login
+                print(loginResult.accessToken.value)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 

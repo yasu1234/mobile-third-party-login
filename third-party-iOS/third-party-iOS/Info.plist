@@ -12,6 +12,22 @@
 				<string>twitterkit-○○○○○○○</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>line○○○○○○○</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>yj-○○○○○○○</string>
+			</array>
+		</dict>
 	</array>
 	<key>GIDClientID</key>
 	<string></string>
