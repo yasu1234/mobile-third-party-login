@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">third-party-login</string>
+    <string name="text_twitter">Twitter</string>
 </resources>
