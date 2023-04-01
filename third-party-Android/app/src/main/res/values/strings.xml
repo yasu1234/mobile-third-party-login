@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">third-party-login</string>
     <string name="text_twitter">Twitter</string>
+    <string name="text_facebook">Facebook</string>
+    <string name="text_facebook_app_id">○○○○○○○○</string>
+    <string name="text_facebook_app_client_token">○○○○○○○○</string>
 </resources>

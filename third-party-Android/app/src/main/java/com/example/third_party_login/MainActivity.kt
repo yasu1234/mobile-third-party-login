@@ -10,6 +10,11 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.lifecycle.lifecycleScope
 import com.example.third_party_login.databinding.ActivityMainBinding
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -23,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var twitter: Twitter
     lateinit var twitterDialog: Dialog
+    private var callBackManager: CallbackManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +36,18 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        callBackManager = CallbackManager.Factory.create()
+
+        setupButton()
+    }
+
+    private fun setupButton() {
         binding.twitterButton.setOnClickListener {
             twitterLogin()
+        }
+
+        binding.facebookButton.setOnClickListener {
+            facebookLogin()
         }
     }
 
@@ -102,6 +118,30 @@ class MainActivity : AppCompatActivity() {
             }
             // use access token
             print(accessToken.token)
+        }
+    }
+
+    // set applicationId and client token in AndroidManifest.xml
+    private fun facebookLogin() {
+        val loginManager = LoginManager()
+
+        loginManager.registerCallback(callBackManager, object: FacebookCallback<LoginResult> {
+            override fun onCancel() {
+            }
+
+            override fun onError(error: FacebookException) {
+            }
+
+            override fun onSuccess(result: LoginResult) {
+                print(result.accessToken.token)
+            }
+        })
+
+        callBackManager?.let {
+            LoginManager.getInstance().logIn(
+                activityResultRegistryOwner = this,
+                callbackManager = it,
+                permissions = listOf("email"))
         }
     }
 }
