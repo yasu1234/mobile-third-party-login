@@ -1,5 +1,6 @@
 package com.example.third_party_login
 
+import android.app.Activity
 import android.app.Dialog
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import com.example.third_party_login.databinding.ActivityMainBinding
 import com.facebook.CallbackManager
@@ -15,6 +17,9 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.Scopes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -29,6 +34,14 @@ class MainActivity : AppCompatActivity() {
     lateinit var twitter: Twitter
     lateinit var twitterDialog: Dialog
     private var callBackManager: CallbackManager? = null
+
+    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            // use token to login google
+            print(task.result.idToken)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +61,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.facebookButton.setOnClickListener {
             facebookLogin()
+        }
+
+        binding.googleButton.setOnClickListener {
+            googleLogin()
         }
     }
 
@@ -143,5 +160,20 @@ class MainActivity : AppCompatActivity() {
                 callbackManager = it,
                 permissions = listOf("email"))
         }
+    }
+
+    private fun googleLogin() {
+        val option = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestScopes(
+                com.google.android.gms.common.api.Scope(Scopes.PROFILE),
+                com.google.android.gms.common.api.Scope(Scopes.EMAIL),
+                com.google.android.gms.common.api.Scope(Scopes.OPEN_ID)
+            )
+            .requestServerAuthCode("○○○-○○○○.apps.googleusercontent.com")
+            .requestEmail().build()
+
+        val googleSignInClient = GoogleSignIn.getClient(this, option)
+        val googleSignInIntent = googleSignInClient.signInIntent
+        launcher.launch(googleSignInIntent)
     }
 }
