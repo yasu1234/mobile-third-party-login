@@ -14,6 +14,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [scheme: "yj-xxxxx"]
     }
 
     buildTypes {
@@ -51,14 +52,14 @@ dependencies {
     implementation 'org.twitter4j:twitter4j-core:4.0.7'
 
     // Yahoo
-    implementation 'com.github.yahoojapan:yjlogin-android-sdk:1.0.0'
+    implementation 'com.github.yahoojapan:yjlogin-android-sdk:1.2.0'
 
     // Facebook
     implementation 'com.facebook.android:facebook-login:16.0.1'
     implementation 'com.facebook.android:facebook-android-sdk:latest.release'
 
     // Line
-    implementation 'com.linecorp:linesdk:5.0.1'
+    implementation 'com.linecorp:linesdk:5.4.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

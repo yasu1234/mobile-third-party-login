@@ -1,15 +1,16 @@
 package com.example.third_party_login
 
-import android.app.Activity
 import android.app.Dialog
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
 import android.view.ViewGroup
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import com.example.third_party_login.databinding.ActivityMainBinding
 import com.facebook.CallbackManager
@@ -20,6 +21,9 @@ import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.Scopes
+import com.google.android.gms.common.api.Scope
+import jp.co.yahoo.yconnect.yjloginsdk.core.LoginError
+import jp.co.yahoo.yconnect.yjloginsdk.core.LoginListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -27,16 +31,18 @@ import twitter4j.Twitter
 import twitter4j.TwitterFactory
 import twitter4j.conf.ConfigurationBuilder
 import java.lang.IllegalStateException
+import java.security.MessageDigest
+import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), LoginListener {
     lateinit var binding: ActivityMainBinding
 
     lateinit var twitter: Twitter
     lateinit var twitterDialog: Dialog
     private var callBackManager: CallbackManager? = null
 
-    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
-        if (result.resultCode == Activity.RESULT_OK) {
+    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
             // use token to login google
             print(task.result.idToken)
@@ -50,6 +56,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         callBackManager = CallbackManager.Factory.create()
+        jp.co.yahoo.yconnect.yjloginsdk.core.LoginManager.setup("CLIENT_ID", "REDIRECT_URL".toUri())
+        jp.co.yahoo.yconnect.yjloginsdk.core.LoginManager.setLoginListener(this)
 
         setupButton()
     }
@@ -65,6 +73,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.googleButton.setOnClickListener {
             googleLogin()
+        }
+
+        binding.yahooButton.setOnClickListener {
+            yahooLogin()
         }
     }
 
@@ -165,9 +177,9 @@ class MainActivity : AppCompatActivity() {
     private fun googleLogin() {
         val option = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestScopes(
-                com.google.android.gms.common.api.Scope(Scopes.PROFILE),
-                com.google.android.gms.common.api.Scope(Scopes.EMAIL),
-                com.google.android.gms.common.api.Scope(Scopes.OPEN_ID)
+                Scope(Scopes.PROFILE),
+                Scope(Scopes.EMAIL),
+                Scope(Scopes.OPEN_ID)
             )
             .requestServerAuthCode("○○○-○○○○.apps.googleusercontent.com")
             .requestEmail().build()
@@ -175,5 +187,21 @@ class MainActivity : AppCompatActivity() {
         val googleSignInClient = GoogleSignIn.getClient(this, option)
         val googleSignInIntent = googleSignInClient.signInIntent
         launcher.launch(googleSignInIntent)
+    }
+
+    private fun yahooLogin() {
+        val digest = MessageDigest.getInstance("SHA-256")
+        val bytes = digest.digest(byteArrayOf())
+        val codeChallenge = Base64.encodeToString(bytes, Base64.NO_WRAP)
+        val codeChallengeFormatted = codeChallenge.replace("=", "").replace("/", "_").replace("+", "-")
+        jp.co.yahoo.yconnect.yjloginsdk.core.LoginManager.login(this, setOf(jp.co.yahoo.yconnect.yjloginsdk.core.Scope.OPENID), UUID.randomUUID().toString(), codeChallengeFormatted)
+    }
+
+    override fun onLoginFailure(loginError: LoginError) {
+        print(loginError)
+    }
+
+    override fun onLoginSuccess(loginResult: jp.co.yahoo.yconnect.yjloginsdk.core.LoginResult) {
+        print(loginResult.authorizationCode)
     }
 }
