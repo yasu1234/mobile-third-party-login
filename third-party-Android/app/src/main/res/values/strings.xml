@@ -6,4 +6,5 @@
     <string name="text_facebook_app_client_token">○○○○○○○○</string>
     <string name="text_google">Google</string>
     <string name="text_yahoo">Yahoo</string>
+    <string name="text_line">Line</string>
 </resources>

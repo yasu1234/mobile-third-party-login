@@ -59,7 +59,7 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:latest.release'
 
     // Line
-    implementation 'com.linecorp:linesdk:5.4.0'
+    implementation 'com.linecorp.linesdk:linesdk:latest.release'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
